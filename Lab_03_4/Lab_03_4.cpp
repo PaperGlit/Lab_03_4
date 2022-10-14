@@ -6,11 +6,14 @@
 
 #include <iostream>
 #include <cmath>
+#include <windows.h>
 
 using namespace std;
 
 int main()
 {
+	SetConsoleOutputCP(1251);
+
 	double x;
 	double y;
 	double R;
@@ -19,14 +22,20 @@ int main()
 	cout << "y = "; cin >> y;
 	cout << "R = "; cin >> R;
 	
-	if (y <= 0 && y >= -x - R || y <= sqrt(R*R - x*x) && y >= 0)
+	if (abs(x) > abs(R))
+	{
+		cout << "Фатальна помилка (|x| не може бути більше |R|)" << endl;
+		return 0;
+	};
+
+	if (y <= 0 && y >= -x - R || y <= sqrt(R * R - x * x) && y >= 0)
 	{
 		cout << "yes" << endl;
 	}
 	else
 	{
 		cout << "no" << endl;
-	}
+	};
 
 	return 0;
 }
